@@ -1,0 +1,13 @@
+[Unit]
+Description=Atylab Go API Server
+After=network.target
+
+[Service]
+ExecStart=/var/www/vhosts/api.atylab.work/atylab-api
+WorkingDirectory=/var/www/vhosts/api.atylab.work/
+Restart=always
+EnvironmentFile=/var/www/vhosts/api.atylab.work/.env
+User=wwwuser
+
+[Install]
+WantedBy=multi-user.target
