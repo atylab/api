@@ -1,0 +1,28 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: cimg/go:1.24.5
+    steps:
+      - checkout
+      - run:
+          name: Set up Go environment
+          command: |
+            go mod download
+            go mod verify
+      - run:
+          name: Copy test env
+          command: cp .env_testing .env
+      - run:
+          name: Run tests
+          command: go test ./... -coverprofile=coverage.out
+      - run:
+          name: Show coverage summary
+          command: go tool cover -func=coverage.out
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
