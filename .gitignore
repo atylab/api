@@ -1,0 +1,6 @@
+# テストカバレッジ
+coverage.out
+coverage.html
+
+# env
+.env
